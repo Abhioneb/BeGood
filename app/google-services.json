@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "742295544718",
+    "firebase_url": "https://whatsapp-dbabb-default-rtdb.firebaseio.com",
+    "project_id": "whatsapp-dbabb",
+    "storage_bucket": "whatsapp-dbabb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742295544718:android:e15f2b43a8dd557ef1badf",
+        "android_client_info": {
+          "package_name": "com.example.begood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742295544718-1lvuvvkqljig81itf4jlk50c8a5v2poo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIixBg3a6UYpx0QErb5VNY2KHXuN9BJFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742295544718-1lvuvvkqljig81itf4jlk50c8a5v2poo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742295544718:android:489d8da419967d9ef1badf",
+        "android_client_info": {
+          "package_name": "com.example.whatsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742295544718-1lvuvvkqljig81itf4jlk50c8a5v2poo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIixBg3a6UYpx0QErb5VNY2KHXuN9BJFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742295544718-1lvuvvkqljig81itf4jlk50c8a5v2poo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
