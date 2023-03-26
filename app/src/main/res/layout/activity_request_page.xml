@@ -82,7 +82,7 @@
                 android:textSize="16sp"></EditText>
 
             <EditText
-                android:id="@+id/landmark"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="60dp"
@@ -92,7 +92,7 @@
                 android:layout_marginRight="60dp"
                 android:background="@drawable/round_textview"
                 android:gravity="center"
-                android:hint="Landmark"
+                android:hint="Address"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/teal_200"
                 android:textColorHint="@color/black"
@@ -131,6 +131,22 @@
                 android:text="Use current location"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/continueBtn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:text="Continue"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:textAllCaps="false"
+                android:layout_marginTop="95dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/roundedcorners"/>
 
         </LinearLayout>
 
