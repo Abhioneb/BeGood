@@ -1,11 +1,14 @@
 package com.example.begood;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,6 +71,7 @@ public class SignUp extends AppCompatActivity {
         String Username = binding.userName.getText().toString();
         String Password = binding.password.getText().toString();
         String Confirmpassword = binding.confirmPassword.getText().toString();
+        String Phone=binding.phone.getText().toString();
         ProgressDialog dialog = new ProgressDialog(SignUp.this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -77,7 +81,7 @@ public class SignUp extends AppCompatActivity {
             binding.Email.setError("Enter Valid Email");
             binding.Email.requestFocus();
         } else if (Password.isEmpty() || Password.length() < 6) {
-            binding.password.setError("Enter Proper Password");
+            binding.password.setError("Too weak password");
         } else if (!Password.equals(Confirmpassword)) {
             binding.confirmPassword.setError("Password does not match at both fields");
         } else if (Username.isEmpty()) {
@@ -91,23 +95,31 @@ public class SignUp extends AppCompatActivity {
 
 
             // Create user account with email and password
-            mAuth.createUserWithEmailAndPassword(email, Password)
-                    .addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-                            // Sign up success
-                            FirebaseUser mUser = mAuth.getCurrentUser();
-                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+            mAuth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            String userId=usersRef.push().getKey();
-                            User user = new User(userId, Username, email, Password);
-                            usersRef.child(userId).setValue(user);
+                    if (task.isSuccessful()) {
+                        dialog.dismiss();
+                        FirebaseUser mUser = mAuth.getCurrentUser();
+                        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 
-                            Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
+                        String userId=usersRef.push().getKey();
+                        users user = new users(userId, Username, email, Password, Phone);
+                        usersRef.child(userId).setValue(user);
 
-                        } else {
-                            Toast.makeText(this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        Toast.makeText(SignUp.this, "Sign Up successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUp.this, MainActivity.class));
+                    } else {
+
+                        dialog.dismiss();
+                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                        Toast.makeText(SignUp.this, "Sign Up failed", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUp.this,SignIn.class));
+                    }
+                }
+            });
+
         }
     }
 }

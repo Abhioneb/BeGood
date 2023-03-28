@@ -127,6 +127,10 @@ public class RequestPage extends AppCompatActivity {
                                 }
 
                             }
+                            else{
+
+                                Toast.makeText(RequestPage.this, "Turn on your location services to see posts within 50km radius", Toast.LENGTH_LONG).show();
+                            }
 
                         }
                     });

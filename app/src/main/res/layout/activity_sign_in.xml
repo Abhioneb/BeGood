@@ -42,9 +42,9 @@
                 android:layout_marginTop="80dp"
                 android:background="@drawable/round_textview"
                 android:gravity="center"
-                android:hint="E-mail"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHint="#FA0D0E0E"
                 android:textColorLink="#FA0D0E0E" />
 
@@ -65,7 +65,7 @@
             <Button
                 android:id="@+id/Login"
                 android:layout_width="290dp"
-                android:layout_height="60dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/roundedcorners"
@@ -76,12 +76,15 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <Button
                 android:id="@+id/forgotPasswordBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:textAllCaps="false"
                 android:text="Forgot Password?"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -98,7 +101,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/SignupTextBtn"
+                android:id="@+id/signUpBtn"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"

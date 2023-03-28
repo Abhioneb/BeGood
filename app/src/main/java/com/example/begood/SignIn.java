@@ -28,7 +28,7 @@ public class SignIn extends AppCompatActivity {
 
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    Button Login;
+    Button Login,signUpBtn;
     EditText Email,Password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,14 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
 
                 PerformAuth();
+            }
+        });
+
+        signUpBtn=findViewById(R.id.signUpBtn);
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignIn.this,SignUp.class));
             }
         });
     }

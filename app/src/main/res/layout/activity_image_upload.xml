@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/cantora_one"
         android:text="Upload Image"
         android:textSize="34sp"
@@ -25,7 +25,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="50dp">
 
         <LinearLayout
@@ -37,9 +37,9 @@
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="420dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="80dp">
+                android:layout_marginTop="20dp">
 
             </ImageView>
 

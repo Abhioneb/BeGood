@@ -1,5 +1,7 @@
 package com.example.begood;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +58,7 @@ public class ImageUpload extends AppCompatActivity {
     EditText caption;
     Button addPhoto, post;
     ImageView photo;
+
 
 
     @Override
@@ -154,47 +159,27 @@ public class ImageUpload extends AppCompatActivity {
 //                                unique identifier for the computer generating the UUI and other factors such as the
 //                                current network address. The result is a unique value that is extremely unlikely to be duplicated.
 
-                                // Generate a unique ID for the post
+                                // It generates a unique ID for the post
                                 DatabaseReference mpostsRef = FirebaseDatabase.getInstance().getReference("posts");
                                 String postId = mpostsRef.push().getKey();
 
-                                // Gets the current timestamp
+                                // Gets the current timestamp which is used to calculate timeSpent since post was made.
                                 long timestamp = System.currentTimeMillis();
 
                                 // user is logged in ,so, get his userId
-                                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                                String userId="";
+                                if(user!=null){
+                                        userId=user.getUid();
+                                }
 
-                                // get the userName
-                                final String[] userName = new String[1];
-
-                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
-                                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                        // Get the User object from the DataSnapshot
-                                        User user = dataSnapshot.getValue(User.class);
-
-                                        // Get the userName from the User object
-                                        userName[0] = user.getUserName();
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        // Handle errors here
-                                        Toast.makeText(ImageUpload.this, "Error getting your userName", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                                Post post = new Post(postId, userId, userName[0]
-                                        , caption.getText().toString(), getIntent().getDoubleExtra("latitudeSent",25.473034), getIntent().getDoubleExtra("longitudeSent",81.878357),
+                                posts post = new posts(postId, user.getUid()
+                                        , caption.getText().toString(),getIntent().getStringExtra("requestType"),getIntent().getDoubleExtra("latitudeSent",25.473034), getIntent().getDoubleExtra("longitudeSent",81.878357),
                                         getIntent().getStringExtra("address"), timestamp, uri.toString());
 
                                 // Save the new post to the Realtime Database
 
                                 mpostsRef.child(postId).setValue(post);
-
 
                                 Toast.makeText(ImageUpload.this, "Post Shared", Toast.LENGTH_SHORT).show();
                             }
