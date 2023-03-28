@@ -60,7 +60,6 @@ public class ImageUpload extends AppCompatActivity {
     ImageView photo;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +69,7 @@ public class ImageUpload extends AppCompatActivity {
         photo = findViewById(R.id.photo);
         addPhoto = findViewById(R.id.addPhoto);
         post = findViewById(R.id.post);
+
 
         post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,21 +167,36 @@ public class ImageUpload extends AppCompatActivity {
                                 long timestamp = System.currentTimeMillis();
 
                                 // user is logged in ,so, get his userId
-                                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                                String userId="";
-                                if(user!=null){
-                                        userId=user.getUid();
-                                }
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                String userId = user.getUid();
 
-                                posts post = new posts(postId, user.getUid()
-                                        , caption.getText().toString(),getIntent().getStringExtra("requestType"),getIntent().getDoubleExtra("latitudeSent",25.473034), getIntent().getDoubleExtra("longitudeSent",81.878357),
-                                        getIntent().getStringExtra("address"), timestamp, uri.toString());
+                                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+                                mDatabase.getReference("users").child(user.getUid()).child("userName")
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                // Get the username value from the snapshot
+                                                String username = dataSnapshot.getValue(String.class);
+                                                posts post = new posts(postId, username, userId
+                                                        , caption.getText().toString(), getIntent().getStringExtra("requestType"), getIntent().getDoubleExtra("latitudeSent", 25.473034), getIntent().getDoubleExtra("longitudeSent", 81.878357),
+                                                        getIntent().getStringExtra("address"), timestamp, uri.toString());
 
-                                // Save the new post to the Realtime Database
+                                                // Save the new post to the Realtime Database
 
-                                mpostsRef.child(postId).setValue(post);
+                                                mpostsRef.child(postId).setValue(post);
 
-                                Toast.makeText(ImageUpload.this, "Post Shared", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(ImageUpload.this, "Post Shared", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(ImageUpload.this, username, Toast.LENGTH_SHORT).show();
+                                            }
+
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+
+
                             }
                         });
 

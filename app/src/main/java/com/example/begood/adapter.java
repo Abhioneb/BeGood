@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class adapter extends FirebaseRecyclerAdapter<posts, adapter.myView> {
 
             image = itemView.findViewById(R.id.image);
             profilePic = itemView.findViewById(R.id.profilePic);
-            userName = itemView.findViewById(R.id.userNameTxtuser);
+            userName = itemView.findViewById(R.id.userName);
             caption = itemView.findViewById(R.id.caption);
             timeAgo = itemView.findViewById(R.id.timeStampTxt);
         }
@@ -82,39 +83,29 @@ public class adapter extends FirebaseRecyclerAdapter<posts, adapter.myView> {
 
         }
 
-        // Finding username
-        String[] username={""};
-        final String[] profilePicture = {""};
-        {
-            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        String userId = post.getUserId();
 
-                    // Get the User object from the DataSnapshot
-                    users user = dataSnapshot.getValue(users.class);
-                    if(user!=null) {
-                        username[0] = user.getUserName();
-                    }
-//                    profilePicture[0]=user.getProfilePic();
-//                    username[0] = dataSnapshot.child("userName").getValue(String.class);
-//                    profilePicture[0] = dataSnapshot.child("profilePic").getValue(String.class);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
+//            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("userName");
+//            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                    // Get the users object from the DataSnapshot
+//                    users user = dataSnapshot.getValue(users.class);
+//                    if(user!=null) {
+//                        username[0] = user.getUserName();
+//                    }
+////                    profilePicture[0]=user.getProfilePic();
+////                    username[0] = dataSnapshot.child("userName").getValue(String.class);
+////                    profilePicture[0] = dataSnapshot.child("profilePic").getValue(String.class);
+//                }
 
 
-        holder.userName.setText(username[0]);
+        holder.userName.setText(post.getUserName());
         holder.caption.setText(post.getCaption());
         holder.timeAgo.setText(timeSpent);
         Glide.with(holder.image.getContext()).load(post.getImageUrl()).into(holder.image);
-//        Glide.with(holder.profilePic.getContext()).load(profilePicture[0]).into(holder.profilePic);
+//        Glide.with(holder.profilePic.getContext()).load(profilePicture).into(holder.profilePic);
 
     }
 
