@@ -1,3 +1,5 @@
+/* Created by Abhinav Pandey on 24 March, 2023 at 4:04 AM */
+
 package com.example.begood;
 
 import static android.content.ContentValues.TAG;
@@ -185,8 +187,7 @@ public class ImageUpload extends AppCompatActivity {
 
                                                 mpostsRef.child(postId).setValue(post);
 
-                                                Toast.makeText(ImageUpload.this, "Post Shared", Toast.LENGTH_SHORT).show();
-                                                Toast.makeText(ImageUpload.this, username, Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(ImageUpload.this,newsFeed.class));
                                             }
 
 

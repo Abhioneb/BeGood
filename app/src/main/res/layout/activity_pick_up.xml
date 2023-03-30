@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/cantora_one"
-        android:text="Sign Up"
+        android:text="Pick Up Details"
         android:textSize="34sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="164dp"
@@ -24,7 +24,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="900dp"
         android:layout_marginTop="20dp"
         app:cardCornerRadius="50dp">
 
@@ -33,148 +33,146 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/userName"
+
+            <TextView
+                android:id="@+id/date"
                 android:layout_width="290dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/round_textview"
                 android:gravity="center"
-                android:hint="Name"
-                android:inputType="textEmailAddress"
+                android:hint="Pickup date"
+                android:onClick="showDatePickerDialog"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black_light"
-                android:textColorLink="#FA0D0E0E" />
+                android:textColorLink="#FA0D0E0E"
+                android:textSize="16sp" />
 
-
-            <EditText
-                android:id="@+id/Email"
+            <TextView
+                android:id="@+id/time"
                 android:layout_width="290dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_textview"
                 android:gravity="center"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textColor="#000000"
+                android:hint="Pickup time"
+                android:onClick="showTimePickerDialog"
+                android:textColor="@color/black"
                 android:textColorHint="@color/black_light"
-                android:textColorLink="#FA0D0E0E" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="290dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/round_textview"
-                android:gravity="center"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColor="#000000"
-                android:textColorHint="@color/black_light"
-                android:textColorLink="@color/teal_200" />
-
-            <EditText
-                android:id="@+id/confirmPassword"
-                android:layout_width="290dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/round_textview"
-                android:gravity="center"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:textColor="#000000"
-                android:textColorHint="@color/black_light"
-                android:textColorLink="@color/teal_200" />
-
-            <EditText
-                android:id="@+id/phone"
-                android:layout_width="290dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/round_textview"
-                android:gravity="center"
-                android:hint="Phone Number"
-                android:textColor="#000000"
-                android:textColorHint="@color/black_light"
-                android:textColorLink="@color/teal_200" />
-
-            <Button
-                android:id="@+id/signUp"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/roundedcorners"
-                android:gravity="center"
-                android:padding="0dp"
-                android:text="Sign Up"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
                 android:textColorLink="@color/teal_200"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="290dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_textview"
+                android:gravity="center"
+                android:hint="Quantity ( in kg )"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black_light"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/food"
+                android:layout_width="290dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_textview"
+                android:gravity="center"
+                android:hint="Food Details "
+                android:padding="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black_light"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/location"
+                android:layout_width="290dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_textview"
+                android:gravity="center"
+                android:hint="Pickup Location "
+                android:padding="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black_light"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <View
                     android:layout_width="100dp"
                     android:layout_height="1dp"
                     android:layout_weight="1"
-                    android:outlineAmbientShadowColor="@color/black"
-                    android:background="#800000" />
+                    android:background="#800000"
+                    android:outlineAmbientShadowColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="OR"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:text="OR" />
+                    android:textStyle="bold" />
+
                 <View
                     android:layout_width="100dp"
                     android:layout_height="1dp"
                     android:layout_weight="1"
-                    android:outlineAmbientShadowColor="@color/black"
-                    android:background="#800000" />
+                    android:background="#800000"
+                    android:outlineAmbientShadowColor="@color/black" />
 
             </LinearLayout>
 
-
             <Button
-                android:id="@+id/signInBtn"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
+                android:id="@+id/locationBtn"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
                 android:background="@drawable/roundedcorners"
-                android:gravity="center"
-                android:text="Sign In"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/signInWithGoogle"
-                android:layout_width="240dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/roundedcorners"
-                android:drawableLeft="@drawable/google"
-                android:gravity="center"
+                android:drawableLeft="@drawable/ic_baseline_my_location_24"
+                android:drawablePadding="0dp"
                 android:paddingLeft="10dp"
-                android:text="Sign In with Google"
+                android:text="Use current location"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/continueBtn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="65dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/roundedcorners"
+                android:drawablePadding="0dp"
+                android:paddingLeft="10dp"
+                android:text="Continue"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

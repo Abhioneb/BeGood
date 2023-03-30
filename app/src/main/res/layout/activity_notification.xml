@@ -14,28 +14,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/cantora_one"
-        android:text="BeGood"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:text="Notifications"
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardBackgroundColor="@color/black_light"
-        android:layout_marginTop="10dp">
+        android:layout_height="800dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="20dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:id="@+id/recyclerView"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:elevation="100dp"
-            tools:listitem="@layout/post_layout"
+            tools:listitem="@layout/notification_item"
             android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
+
     </androidx.cardview.widget.CardView>
 
 

@@ -1,4 +1,4 @@
-/* Created by Abhinav Pandey on 28 March, 2023 at 6:02 AM */
+/* Created by Abhinav Pandey on 30 March, 2023 at 6:02 AM */
 
 package com.example.begood;
 
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,40 +32,50 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class adapter extends FirebaseRecyclerAdapter<posts, adapter.myView> {
+public class adapterNotification extends FirebaseRecyclerAdapter<donationOffers, adapterNotification.myView> {
 
-    public adapter(@NonNull FirebaseRecyclerOptions<posts> options) {
+    public adapterNotification(@NonNull FirebaseRecyclerOptions<donationOffers> options) {
         super(options);
     }
 
     public class myView extends RecyclerView.ViewHolder {
 
-        TextView userName, caption, timeAgo;
-        ImageView image;
-        CircleImageView profilePic;
-        Button donate;
+        TextView notification;
+        ImageButton postPhoto;
+        CircleImageView donorProfile;
 
         public myView(@NonNull View itemView) {
             super(itemView);
 
-            image = itemView.findViewById(R.id.image);
-            profilePic = itemView.findViewById(R.id.profilePic);
-            userName = itemView.findViewById(R.id.userName);
-            caption = itemView.findViewById(R.id.caption);
-            timeAgo = itemView.findViewById(R.id.timeStampTxt);
-            donate = itemView.findViewById(R.id.donate);
+            notification=itemView.findViewById(R.id.notificationTxt);
+            postPhoto=itemView.findViewById(R.id.postPhoto);
+            donorProfile=itemView.findViewById(R.id.donorProfile);
+
         }
     }
 
+    @NonNull
     @Override
-    protected void onBindViewHolder(@NonNull adapter.myView holder, int position, @NonNull posts post) {
+    public adapterNotification.myView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        // calculating time spent since post was made.
-        if (position < getItemCount()) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_layout, parent, false);
+        return new adapterNotification.myView(view);
+    }
 
+    @Override
+    public int getItemCount() {
+        // Return the number of items in the Firebase Realtime Database
+        return getSnapshots().size();
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull myView holder, int position, @NonNull donationOffers model) {
+
+        if(position<getItemCount()){
             String timeSpent = "";
+            String donorName= model.getDonorName();
             {
-                long postTimestamp = post.getTimestamp();
+                long postTimestamp = model.getTimestamp();
                 long currentTime = System.currentTimeMillis();
                 long timeSincePost = currentTime - postTimestamp;
 
@@ -90,46 +101,15 @@ public class adapter extends FirebaseRecyclerAdapter<posts, adapter.myView> {
 
             }
 
-            String userId = post.getUserId();
+            String notificationText=donorName+ " is willing to donate you food on "+model.getDate()+" at "+ model.getTime()+"." + donorName+" is providing "+
+                    model.getQuantity()+"kg food cooked food consisting of "+model.getFood()+".You can pick food at "+model.getLocation()+
+                    ".For further clarifications, you can message" + model.getDonorName();
 
-            // binding the views
-            {
-                holder.userName.setText(post.getUserName());
-                holder.caption.setText(post.getCaption());
-                holder.timeAgo.setText(timeSpent);
-                Glide.with(holder.image.getContext()).load(post.getImageUrl()).into(holder.image);
-//        Glide.with(holder.profilePic.getContext()).load(profilePicture).into(holder.profilePic);
-            }
+            holder.notification.setText(notificationText);
+            Glide.with(holder.postPhoto.getContext()).load(model.getImageUri()).into(holder.postPhoto);
 
-            // click listeners for donate button
-            {
-                holder.donate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                        Intent intent = new Intent(holder.donate.getContext(), pickUp.class);
-                        intent.putExtra("requestId", userId);
-                        intent.putExtra("imageUri", post.getImageUrl());
-                        intent.putExtra("postId", post.getPostId());
-                        holder.donate.getContext().startActivity(intent);
-                    }
-                });
-            }
         }
-    }
-
-    @NonNull
-    @Override
-    public adapter.myView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_layout, parent, false);
-        return new adapter.myView(view);
-    }
-
-    @Override
-    public int getItemCount() {
-        // Return the number of items in the Firebase Realtime Database
-        return getSnapshots().size();
     }
 
 }

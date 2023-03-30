@@ -32,12 +32,14 @@ import java.util.Locale;
 
 public class RequestPage extends AppCompatActivity {
 
-    FusedLocationProviderClient fusedLocationProviderClient;
+
     EditText state, city, address;
     Button locationBtn, continueBtn;
     Spinner requestType;
-    Double latitude, longitude;
+
+    FusedLocationProviderClient fusedLocationProviderClient;
     private final static int REQUEST_CODE = 100;
+    Double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

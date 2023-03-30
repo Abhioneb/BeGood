@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -34,7 +35,7 @@ import java.util.Locale;
 
 public class newsFeed extends AppCompatActivity {
 
-    Double userLat=25.473034, userLng=81.878357;
+    Double userLat = 25.473034, userLng = 81.878357;
     adapter adapter;
     private final static int REQUEST_CODE = 100;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -49,7 +50,8 @@ public class newsFeed extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference postsRef = database.getReference("posts");
@@ -69,7 +71,18 @@ public class newsFeed extends AppCompatActivity {
                         .build();
 
         adapter = new adapter(options);
+
+        // to show the posts sorted from latest to oldest just reverse the recyclerView :)
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+//        super.onBackPressed();  This line causes the app to go back to the previous activity.
+        startActivity(new Intent(newsFeed.this,MainActivity.class));
     }
 
     private void getLastLocation() {
