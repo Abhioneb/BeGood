@@ -146,7 +146,6 @@ public class pickUp extends AppCompatActivity {
                         startActivity(new Intent(pickUp.this,newsFeed.class));
                     }
 
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 

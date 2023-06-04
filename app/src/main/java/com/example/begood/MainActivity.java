@@ -52,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, newsFeed.class));
             }
         });
+        profile=findViewById(R.id.profile);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,profile.class));
+            }
+        });
 
         notification=findViewById(R.id.notification);
         notification.setOnClickListener(new View.OnClickListener() {

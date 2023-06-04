@@ -46,7 +46,7 @@ public class newsFeed extends AppCompatActivity {
         setContentView(R.layout.activity_news_feed);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        getLastLocation();  //  find the location of the user.
+        getLastLocation();
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -82,7 +82,7 @@ public class newsFeed extends AppCompatActivity {
     public void onBackPressed() {
 
 //        super.onBackPressed();  This line causes the app to go back to the previous activity.
-        startActivity(new Intent(newsFeed.this,MainActivity.class));
+        startActivity(new Intent(newsFeed.this, MainActivity.class));
     }
 
     private void getLastLocation() {
@@ -129,7 +129,8 @@ public class newsFeed extends AppCompatActivity {
 
     private void askPermission() {
         ActivityCompat.requestPermissions(newsFeed.this, new String[]
-                {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+                {
+                        Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
     }
 
     @Override
