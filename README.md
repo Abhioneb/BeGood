@@ -17,4 +17,4 @@ The BeGood is a mobile application developed using Java and XML. It utilizes the
 - The app provides real-time notifications for new donations and interested collectors.
 
 - ## Demo Video Link:
-  <a href=""https://www.youtube.com/watch?v=kvLBA_hNNc8"</a>
+-  <a href="">https://www.youtube.com/watch?v=kvLBA_hNNc8</a>
