@@ -15,3 +15,6 @@ The BeGood is a mobile application developed using Java and XML. It utilizes the
 - The app displays a list of available food donations.
 - Users can view the details of each food donation and express their interest in collecting it.
 - The app provides real-time notifications for new donations and interested collectors.
+
+- ## Demo Video Link:
+  <a href="https://www.youtube.com/watch?v=kvLBA_hNNc8"</a>
