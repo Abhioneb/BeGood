@@ -1,7 +1,5 @@
 # Food Donation App
 
-![Food Donation App](screenshots/app-screenshot.png)
-
 The BeGood is a mobile application developed using Java and XML. It utilizes the following technologies and libraries:
 
 - **Java**: The primary programming language used for developing the app logic.
